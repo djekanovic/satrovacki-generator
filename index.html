@@ -1,0 +1,104 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Satrovacki Generator to replace Lorem Ipsum</title>
+  <meta name="description" content="Satrovacki Generator to replace Lorem Ipsum">
+  <meta name="author" content="djekanovic">
+  <meta property="og:title" content="Satrovacki Generator to replace Lorem Ipsum">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Satrovacki Generator to replace Lorem Ipsum">
+  <meta property="og:image" content="image.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+
+</head>
+
+<body>
+
+
+<label>Choose Lenght: <input onfocus="deleteFn()" id="input" onchange="calc()" type="number"></input></label>
+  
+  <textarea rows="10" cols="200" id="text"></textarea>
+
+<button  onclick="copyFn()" id="copy">Copy</button>
+
+<div style="display: none" id="alert_wrap"><p id="alert"></p>
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+</div>
+ 
+
+
+  <script>
+    
+    var dropdown = document.getElementById("input");
+var inputVal = document.getElementById("input").value;
+    dropdown.onchange = calc;
+
+
+
+function calc() {
+  
+  var inputVal = document.getElementById("input").value;
+uarticle = new Array("The", "A", "One", "Some", "Any"); 
+noun = new Array("kežva", "mojne!", "tebra", "ganci", "ljakse", "zipa", "tenkre", "Tarmi", "vugla", "vutra", "vopi", "vozdra", "konza", "dbalfu", "vaspra", "Dovla", "Šone", "Šomi", "Kiza", "Ćofi", "Rema", "Fiste", "Ćomi", "Džoni", "Čoda", "Kisa", "Ksijo", "Leksa", "Lošmi", "Coa", "živa", "važi", "leća", "Munze", "tdro", "ricama", "bemje", "žatibe", "moćpo"); 
+verb = new Array("drove", "jumped", 'zivo', "ran", "walked", "skipped"); 
+larticle = new Array("the", "a", "one", "some", "any"); 
+preposition = new Array("to", "from", "over", "under", "on"); 
+
+for (i = 1; i <=inputVal; i++) {
+var rand1 = [Math.floor ( Math.random() * uarticle.length )]; 
+var rand2 = [Math.floor ( Math.random() * noun.length )]; 
+var rand3 = [Math.floor ( Math.random() * verb.length )]; 
+var rand4 = [Math.floor ( Math.random() * larticle.length )]; 
+var rand5 = [Math.floor ( Math.random() * preposition.length )]; 
+
+document.getElementById('text').value += (uarticle[rand1] + " " + noun[rand2] + " " + verb[rand3] + " " + preposition[rand1] + " " + larticle[rand4] + " " + noun[rand2] + ". "); 
+  
+}
+  
+}
+
+function deleteFn() {
+  document.getElementById('text').value = '';
+}
+
+
+
+function copyFn() {
+  /* Get the text field */
+  var copyText = document.getElementById("text");
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+  /* Copy the text inside the text field */
+  navigator.clipboard.writeText(copyText.value);
+  
+document.getElementById('alert').innerHTML = 'Text copied successfully';
+  document.getElementById("alert_wrap").style.display = "flex";
+
+}
+
+  </script>
+  
+  <style>
+    body {
+  
+  background: black;
+  color: white;
+}
+
+div#alert_wrap {
+    align-items: center;
+    gap: 10px;
+    background: #baf04f;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 0px 20px;
+}
+  </style>
+</body>
+</html>
