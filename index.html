@@ -32,6 +32,7 @@
 
   <script>
     
+  
     var dropdown = document.getElementById("input");
 var inputVal = document.getElementById("input").value;
     dropdown.onchange = calc;
@@ -41,9 +42,9 @@ var inputVal = document.getElementById("input").value;
 function calc() {
   
   var inputVal = document.getElementById("input").value;
-uarticle = new Array("The", "A", "One", "Some", "Any"); 
+uarticle = new Array("lethal", "defective", "comfortable", "detailed", "financial", "bright", "six", "unnatural", "daffy", "crooked", "spotty", "shallow", "near", "boorish", "eastern", "loud", "careless", "cheap", "incredible", "future", "hallowed", "royal", "unwieldy", "hurried", "waggish", "blue", "brown", "guttural", "fluffy", "festive", "learned", "giddy", "legal", "productive", "sincere", "alike", "noiseless", "condemned", "aquatic", "precious", "dynamic", "cowardly", "impressive", "hissing", "dull", "The", "A", "One", "Some", "Any"); 
 noun = new Array("kežva", "mojne!", "tebra", "ganci", "ljakse", "zipa", "tenkre", "Tarmi", "vugla", "vutra", "vopi", "vozdra", "konza", "dbalfu", "vaspra", "Dovla", "Šone", "Šomi", "Kiza", "Ćofi", "Rema", "Fiste", "Ćomi", "Džoni", "Čoda", "Kisa", "Ksijo", "Leksa", "Lošmi", "Coa", "živa", "važi", "leća", "Munze", "tdro", "ricama", "bemje", "žatibe", "moćpo"); 
-verb = new Array("drove", "jumped", 'zivo', "ran", "walked", "skipped"); 
+verb = new Array("drove", "jumped", 'zivo', "ran", "walked", "skipped", "guest", "response", "attention", "reaction", "television", "definition", "competition", "recipe", "bath", "volume", "mode", "artisan", "philosophy", "salad", "town", "satisfaction", "signature", "bird", "scene", "year", "analysis", "possession", "assistant", "transportation", "housing", "art", "college", "law", "world", "committee", "percentage", "appointment", "pollution", "instance", "population", "hospital", "aspect", "engineering", "introduction", "error", "restaurant", "inspector", "problem", "map", "menu", "addition", "story", "importance", "painting", "thought"); 
 larticle = new Array("the", "a", "one", "some", "any"); 
 preposition = new Array("to", "from", "over", "under", "on"); 
 
@@ -54,7 +55,7 @@ var rand3 = [Math.floor ( Math.random() * verb.length )];
 var rand4 = [Math.floor ( Math.random() * larticle.length )]; 
 var rand5 = [Math.floor ( Math.random() * preposition.length )]; 
 
-document.getElementById('text').value += (uarticle[rand1] + " " + noun[rand2] + " " + verb[rand3] + " " + preposition[rand1] + " " + larticle[rand4] + " " + noun[rand2] + ". "); 
+document.getElementById('text').value += (uarticle[rand1] + " " + noun[rand2] + " " + verb[rand3] + " " + preposition[rand5] + " " + larticle[rand4] + " " + noun[rand2] + ". "); 
   
 }
   
@@ -81,6 +82,7 @@ document.getElementById('alert').innerHTML = 'Text copied successfully';
   document.getElementById("alert_wrap").style.display = "flex";
 
 }
+
 
   </script>
   
