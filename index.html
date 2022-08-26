@@ -18,7 +18,9 @@
 <body>
 
 
-<label>Choose Lenght: <input onfocus="deleteFn()" id="input" onchange="calc()" type="number"></input></label>
+<h2> Balkan Lorem Ipsum </h2>
+<blockquote>Combination of <b>Satrovacki</b> and <b>Utrovacki</b> with some English. :) </blockquote>
+<label>Choose Lenght(sentences): <input onfocus="deleteFn()" id="input" onchange="calc()" type="number"></input></label>
   
   <textarea rows="10" cols="200" id="text"></textarea>
 
@@ -27,12 +29,134 @@
 <div style="display: none" id="alert_wrap"><p id="alert"></p>
   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
 </div>
- 
+
+
+<div class="spacer" style="height: 300px"></div>
+<h2>Like it? Paypal donate available.</h2>
+<div id="smart-button-container">
+    <div style="text-align: center,"><label for="description">Donation message </label><input style="width: 100%" type="text" name="descriptionInput" id="description" maxlength="127" value=""></div>
+      <p id="descriptionError" style="visibility: hidden; color:red; text-align: center;">Please enter a description</p>
+    <div style="text-align: center"><label for="amount">Choose amount </label><input name="amountInput" style="width: 100%" type="number" id="amount" value="" ><span> USD</span></div>
+      <p id="priceLabelError" style="visibility: hidden; color:red; text-align: center;">Please enter a price</p>
+    <div id="invoiceidDiv" style="text-align: center; display: none;"><label for="invoiceid"> </label><input style="width: 100%" name="invoiceid" maxlength="127" type="text" id="invoiceid" value="" ></div>
+      <p id="invoiceidError" style="visibility: hidden; color:red; text-align: center;">Please enter an Invoice ID</p>
+    <div style="text-align: center; margin-top: 0.625rem;" id="paypal-button-container"></div>
+  </div>
+  <script src="https://www.paypal.com/sdk/js?client-id=AeraIUpf6YMarFKESwURB6kyGLDTbK3YfzTdbPFWpKUf4i99j7Kw7oQgRz-iUCi5Dc8PfEc9vlll62A6&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+  <script>
+  function initPayPalButton() {
+    var description = document.querySelector('#smart-button-container #description');
+    var amount = document.querySelector('#smart-button-container #amount');
+    var descriptionError = document.querySelector('#smart-button-container #descriptionError');
+    var priceError = document.querySelector('#smart-button-container #priceLabelError');
+    var invoiceid = document.querySelector('#smart-button-container #invoiceid');
+    var invoiceidError = document.querySelector('#smart-button-container #invoiceidError');
+    var invoiceidDiv = document.querySelector('#smart-button-container #invoiceidDiv');
+
+    var elArr = [description, amount];
+
+    if (invoiceidDiv.firstChild.innerHTML.length > 1) {
+      invoiceidDiv.style.display = "block";
+    }
+
+    var purchase_units = [];
+    purchase_units[0] = {};
+    purchase_units[0].amount = {};
+
+    function validate(event) {
+      return event.value.length > 0;
+    }
+
+    paypal.Buttons({
+      style: {
+        color: 'black',
+        shape: 'pill',
+        label: 'paypal',
+        layout: 'horizontal',
+        tagline: true
+      },
+
+      onInit: function (data, actions) {
+        actions.disable();
+
+        if(invoiceidDiv.style.display === "block") {
+          elArr.push(invoiceid);
+        }
+
+        elArr.forEach(function (item) {
+          item.addEventListener('keyup', function (event) {
+            var result = elArr.every(validate);
+            if (result) {
+              actions.enable();
+            } else {
+              actions.disable();
+            }
+          });
+        });
+      },
+
+      onClick: function () {
+        if (description.value.length < 1) {
+          descriptionError.style.visibility = "visible";
+        } else {
+          descriptionError.style.visibility = "hidden";
+        }
+
+        if (amount.value.length < 1) {
+          priceError.style.visibility = "visible";
+        } else {
+          priceError.style.visibility = "hidden";
+        }
+
+        if (invoiceid.value.length < 1 && invoiceidDiv.style.display === "block") {
+          invoiceidError.style.visibility = "visible";
+        } else {
+          invoiceidError.style.visibility = "hidden";
+        }
+
+        purchase_units[0].description = description.value;
+        purchase_units[0].amount.value = amount.value;
+
+        if(invoiceid.value !== '') {
+          purchase_units[0].invoice_id = invoiceid.value;
+        }
+      },
+
+      createOrder: function (data, actions) {
+        return actions.order.create({
+          purchase_units: purchase_units,
+        });
+      },
+
+      onApprove: function (data, actions) {
+        return actions.order.capture().then(function (orderData) {
+
+          // Full available details
+          console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+          // Show a success message within this page, e.g.
+          const element = document.getElementById('paypal-button-container');
+          element.innerHTML = '';
+          element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+          // Or go to another URL:  actions.redirect('thank_you.html');
+          
+        });
+      },
+
+      onError: function (err) {
+        console.log(err);
+      }
+    }).render('#paypal-button-container');
+  }
+  initPayPalButton();
+  </script>
+
 
 
   <script>
     
-  
+
     var dropdown = document.getElementById("input");
 var inputVal = document.getElementById("input").value;
     dropdown.onchange = calc;
@@ -42,10 +166,10 @@ var inputVal = document.getElementById("input").value;
 function calc() {
   
   var inputVal = document.getElementById("input").value;
-uarticle = new Array("lethal", "defective", "comfortable", "detailed", "financial", "bright", "six", "unnatural", "daffy", "crooked", "spotty", "shallow", "near", "boorish", "eastern", "loud", "careless", "cheap", "incredible", "future", "hallowed", "royal", "unwieldy", "hurried", "waggish", "blue", "brown", "guttural", "fluffy", "festive", "learned", "giddy", "legal", "productive", "sincere", "alike", "noiseless", "condemned", "aquatic", "precious", "dynamic", "cowardly", "impressive", "hissing", "dull", "The", "A", "One", "Some", "Any"); 
+uarticle = new Array("lethal", "defective", "comfortable", "detailed", "financial", "bright", "six", "unnatural", "daffy", "crooked", "spotty", "shallow", "near", "boorish", "eastern", "loud", "careless", "cheap", "incredible", "future", "hallowed", "royal", "unwieldy", "hurried", "waggish", "blue", "brown", "guttural", "fluffy", "festive", "learned", "giddy", "legal", "productive", "sincere", "alike", "noiseless", "condemned", "aquatic", "precious", "dynamic", "cowardly", "impressive", "hissing", "dull", "The", "A", "One", "Some", "Any", "ukipedijazavinje"); 
 noun = new Array("kežva", "mojne!", "tebra", "ganci", "ljakse", "zipa", "tenkre", "Tarmi", "vugla", "vutra", "vopi", "vozdra", "konza", "dbalfu", "vaspra", "Dovla", "Šone", "Šomi", "Kiza", "Ćofi", "Rema", "Fiste", "Ćomi", "Džoni", "Čoda", "Kisa", "Ksijo", "Leksa", "Lošmi", "Coa", "živa", "važi", "leća", "Munze", "tdro", "ricama", "bemje", "žatibe", "moćpo"); 
 verb = new Array("drove", "jumped", 'zivo', "ran", "walked", "skipped", "guest", "response", "attention", "reaction", "television", "definition", "competition", "recipe", "bath", "volume", "mode", "artisan", "philosophy", "salad", "town", "satisfaction", "signature", "bird", "scene", "year", "analysis", "possession", "assistant", "transportation", "housing", "art", "college", "law", "world", "committee", "percentage", "appointment", "pollution", "instance", "population", "hospital", "aspect", "engineering", "introduction", "error", "restaurant", "inspector", "problem", "map", "menu", "addition", "story", "importance", "painting", "thought"); 
-larticle = new Array("the", "a", "one", "some", "any"); 
+larticle = new Array("ukipedijazavinje", "ubodnazaslonje", "uciklopedijazaennje", "ugradzabeonje", "utezabranje", "ubijazasrnje", "ucedizananje", "utrazavunje", "undrozasanje", "udljivzanevinje", "uljanzaminje", "unerkazatrenje", "uvozapinje", "umotazasranje", "ublemzapronje", "utakzaornje", "ukolazaninje", "urkozamanje", "ulipzafinje", "ustinazakrinje", "unjazaanje", "uvanazajonje", "urkozadanje"); 
 preposition = new Array("to", "from", "over", "under", "on"); 
 
 for (i = 1; i <=inputVal; i++) {
@@ -88,6 +212,13 @@ document.getElementById('alert').innerHTML = 'Text copied successfully';
   
   <style>
 
+body {
+  
+  background: black;
+  color: white;
+  font-family: serif, sans-serif;
+}
+
 div#alert_wrap {
     align-items: center;
     gap: 10px;
@@ -95,6 +226,12 @@ div#alert_wrap {
     border-radius: 10px;
     width: fit-content;
     padding: 0px 20px;
+
+}
+
+h2 {
+  font-size: 4vw;
+  font-weight: 900 !important;
 }
   </style>
 </body>
